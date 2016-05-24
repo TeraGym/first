@@ -3,21 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package connexion;
+package accesOracle;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 /**
  *
- * @author Mooneswar.Ramburrun
+ * @author P1313115
  */
+public class SourceOracle {
 
-public class ConnexionOracleFactory {
+    public static Connection getConnexion() throws FileNotFoundException, IOException, SQLException {
 
-public static java.sql.Connection creerConnexion(){
-    try {
         java.util.Properties props;
         props = new java.util.Properties();
         java.io.FileInputStream fichier;
-        fichier = new java.io.FileInputStream("./src/connexion/connexion.properties");
+        fichier = new java.io.FileInputStream("./src/accesOracle/connexion.properties");
         props.load(fichier);
         oracle.jdbc.pool.OracleDataSource ods;
         ods = new oracle.jdbc.pool.OracleDataSource();
@@ -27,13 +31,9 @@ public static java.sql.Connection creerConnexion(){
         ods.setUser(props.getProperty("user"));
         ods.setPassword(props.getProperty("pwd"));
         ods.setServerName(props.getProperty("serveur"));
-       return(ods.getConnection());
-    }catch (java.sql.SQLException | java.io.IOException | NumberFormatException e){
-        System.out.println("Erreur lors de la lecture du fichier de configuration : " + e.getMessage());
-        return null;
+
+        return ods.getConnection();
+
     }
- } 
- 
- private static java.sql.Connection connexion;
- 
-}// fin ConnexionOracleFactory
+
+}
