@@ -11,10 +11,13 @@ import accesOracle.SourceOracle;
 import vue.FenetreAffichage;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.PasswordAuthentication;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import vue.FenetreIdentification;
+import vue.FenetreIdentification;
 
 /**
  *
@@ -24,6 +27,13 @@ public class Main {
 
     //private static DaoEmploye daoEmp;
     private static DaoAdherent daoAdh;
+
+    private enum TypeUtilisateur {
+
+        Adherent, Employe
+    };
+    private static TypeUtilisateur leType;
+
     /**
      * @param args the command line arguments
      */
@@ -50,32 +60,60 @@ public class Main {
             java.util.logging.Logger.getLogger(FenetreAffichage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
-       
-
         //</editor-fold>
 
         /* Create and display the form */
-         java.awt.EventQueue.invokeLater(new Runnable() {
-         public void run() {
-        
-             try {
-                 Connection cnx = SourceOracle.getConnexion();
-                 daoAdh = new DaoAdherent(cnx);
-                 System.out.println("connecté");
-                
-                 
-             } catch (Exception ex) {
-                 System.out.println("erreur" + ex.getMessage());
-             } 
-             
-              ModeleTable leModele = new ModeleTable(daoAdh);
-              new FenetreAffichage(leModele).setVisible(true);
-           
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
 
-         
-         }
-         });
+                try {
+                    Connection cnx = SourceOracle.getConnexion();
+                    daoAdh = new DaoAdherent(cnx);
+                    System.out.println("connecté");
+                } catch (Exception ex) {
+                    System.out.println("erreur de connexion à la base " + ex.getMessage());
+                }
+
+                FenetreIdentification fensaisie = new FenetreIdentification(null);
+                boolean etat = false;
+                do {
+
+                    PasswordAuthentication blocId = fensaisie.recuperer();
+                    try {
+                        int numero = Integer.parseInt(blocId.getUserName());
+                        String motDePasse = new String(blocId.getPassword());
+
+                        // recuperation du type adhérent ou employé
+                        if (daoAdh.estAdherent(numero, motDePasse) == true) {
+                            etat = true;
+                            leType = TypeUtilisateur.Adherent;
+                        }
+//                        else if {
+//                           les autres cas 
+//                        }
+
+                    } catch (Exception ex) {
+                        System.out.println("erreur de login " + ex.getMessage());
+                    }
+
+                } while (etat == false);
+
+
+                // si type adherent on lance la fenetre principale appli adhrent
+                // sinon si type employé on lance la fenetre principale appli employe
+                // sinon erreur
+                // ModeleTable leModele = new ModeleTable(daoAdh);
+                // new FenetreAffichage(leModele).setVisible(true);
+
+                if (leType == TypeUtilisateur.Adherent) {
+                    System.out.println("Type utilisateur");
+                }
+                
+            } // run
+        }
+        );// new runnable
+
     }//fin du main
-    // TODO code application logic here
+
 }//fin classe
 

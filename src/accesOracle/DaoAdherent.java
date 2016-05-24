@@ -46,6 +46,15 @@ public class DaoAdherent {
 
         
     }
+    
+     public boolean estAdherent(int numAdherent, String password ) throws SQLException {
+        String requete = "select 1 from ADHERENT where numeroadherent = " + numAdherent + "and mdpadherent = " + password;
+        PreparedStatement pstmt = cnx.prepareStatement(requete);
+        ResultSet rset = pstmt.executeQuery(requete);
+        boolean resultat = rset.next();
+        pstmt.close();
+        return resultat;
+    }
 }
 
 
