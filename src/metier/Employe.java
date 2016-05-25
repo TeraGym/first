@@ -11,12 +11,12 @@ package metier;
  */
 public class Employe {
 
-    private String numEmploye;
+    private int numEmploye;
     private String nomEmploye;
     private String prenomEmploye;
     private String adresseEmploye;
 
-    public Employe(String numEmploye, String nomEmploye, String prenomEmploye, String adresseEmploye) {
+    public Employe(int numEmploye, String nomEmploye, String prenomEmploye, String adresseEmploye) {
         this.numEmploye = numEmploye;
         this.nomEmploye = nomEmploye;
         this.prenomEmploye = prenomEmploye;
@@ -26,7 +26,7 @@ public class Employe {
     public Employe() {
     }
 
-    public String getNumEmploye() {
+    public int getNumEmploye() {
         return numEmploye;
     }
 
@@ -47,7 +47,7 @@ public class Employe {
         return "Employe{" + "numEmploye=" + numEmploye + ", nomEmploye=" + nomEmploye + ", prenomEmploye=" + prenomEmploye + ", adresseEmploye=" + adresseEmploye + '}';
     }
 
-    public void setNumEmploye(String numEmploye) {
+    public void setNumEmploye(int numEmploye) {
         this.numEmploye = numEmploye;
     }
 

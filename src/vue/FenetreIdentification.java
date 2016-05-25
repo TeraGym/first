@@ -5,6 +5,7 @@
  */
 package vue;
 
+import java.awt.event.KeyEvent;
 import java.net.PasswordAuthentication;
 
 /**
@@ -18,6 +19,7 @@ public class FenetreIdentification extends javax.swing.JDialog {
     public FenetreIdentification(java.awt.Frame parent) {
         super(parent,true);
         initComponents();
+        
     }
 
    public PasswordAuthentication recuperer() {
@@ -40,6 +42,18 @@ public class FenetreIdentification extends javax.swing.JDialog {
         jLabel1.setText("Id");
 
         jLabel2.setText("Pwd");
+
+        txId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txIdKeyPressed(evt);
+            }
+        });
+
+        txPwd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txPwdKeyPressed(evt);
+            }
+        });
 
         jButton1.setText("OK");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -90,6 +104,19 @@ public class FenetreIdentification extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void txPwdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txPwdKeyPressed
+       if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+					dispose();
+				}
+    }//GEN-LAST:event_txPwdKeyPressed
+
+    private void txIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txIdKeyPressed
+       if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+					dispose();
+				}
+    }//GEN-LAST:event_txIdKeyPressed
+
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

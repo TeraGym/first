@@ -16,7 +16,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import vue.FenetreIdentification;
+import vue.FenetreCoach;
 import vue.FenetreIdentification;
 
 /**
@@ -27,7 +27,8 @@ public class Main {
 
     //private static DaoEmploye daoEmp;
     private static DaoAdherent daoAdh;
-
+    private static DaoEmploye daoEmp;
+    
     private enum TypeUtilisateur {
 
         Adherent, Employe
@@ -65,22 +66,26 @@ public class Main {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                 PasswordAuthentication blocId;
 
                 try {
                     Connection cnx = SourceOracle.getConnexion();
                     daoAdh = new DaoAdherent(cnx);
+                    daoEmp = new DaoEmploye(cnx);
                     System.out.println("connecté");
+                    System.out.println(daoEmp.lireUnEmploye(10002).getNomEmploye());
                 } catch (Exception ex) {
                     System.out.println("erreur de connexion à la base " + ex.getMessage());
                 }
 
                 FenetreIdentification fensaisie = new FenetreIdentification(null);
                 boolean etat = false;
+                int numero = 0;
                 do {
 
-                    PasswordAuthentication blocId = fensaisie.recuperer();
+                    blocId = fensaisie.recuperer();
                     try {
-                        int numero = Integer.parseInt(blocId.getUserName());
+                       numero = Integer.parseInt(blocId.getUserName());
                         String motDePasse = new String(blocId.getPassword());
 
                         // recuperation du type adhérent ou employé
@@ -88,9 +93,12 @@ public class Main {
                             etat = true;
                             leType = TypeUtilisateur.Adherent;
                         }
-//                        else if {
-//                           les autres cas 
-//                        }
+                        else if(daoEmp.estEmploye(numero, motDePasse) == true) {
+                            {
+                            etat = true;
+                            leType = TypeUtilisateur.Employe;
+                        }
+                        }
 
                     } catch (Exception ex) {
                         System.out.println("erreur de login " + ex.getMessage());
@@ -107,6 +115,18 @@ public class Main {
 
                 if (leType == TypeUtilisateur.Adherent) {
                     System.out.println("Type utilisateur");
+                }
+                else if(leType == TypeUtilisateur.Employe){
+                    
+                    System.out.println("Type employé");
+                     try {
+                         ModeleTableCoach leModele = new ModeleTableCoach(daoAdh,numero);
+                         FenetreCoach laFenetreCoach;
+                         laFenetreCoach =new FenetreCoach(leModele,daoAdh,daoEmp,numero);
+                         laFenetreCoach.setVisible(true);
+                     } catch (SQLException ex) {
+                         Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                     }
                 }
                 
             } // run
