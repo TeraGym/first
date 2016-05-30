@@ -80,22 +80,30 @@ public class DaoEmploye {
 
     //générer un identifiant unique
         public void IdEmployeGenerator(int numEmp) throws SQLException {
+        String prerequete = "select nomemploye, prenomemploye from employe where numeroemploye = " + numEmp;
+        PreparedStatement pstmt1 = cnx.prepareStatement(prerequete);
+        ResultSet rset1 = pstmt1.executeQuery(prerequete);
+        pstmt1.close();
+                while (rset1.next()){
+            String nomEmploye = rset1.getString(1);
+            String prenomEmploye = rset1.getString(2);
         String requete="";
         if(numEmp >=0 && numEmp <10){
              requete = "update Employe "
-                + "Set identifiantEmployet='E16000"+numEmp+"'"
+                + "Set identifiantEmploye='"+prenomEmploye+"."+nomEmploye+"' "
                 + "where numeroEmploye="+numEmp;
         } else if(numEmp >=10 && numEmp <100){
             requete = "update Employe "
-                + "Set identifiantEmploye='E1600"+numEmp+"'"
+                + "Set identifiantEmploye='"+prenomEmploye+"."+nomEmploye+"' "
                 + "where numeroaEmploye="+numEmp;
         }else if(numEmp >=100 && numEmp <1000){
             requete = "update Employe "
-                + "Set identifiantEmploye='E160"+numEmp+"'"
+                + "Set identifiantEmploye='"+prenomEmploye+"."+nomEmploye+"' "
                 + "where numeroEmploye="+numEmp;
         }
         PreparedStatement pstmt = cnx.prepareStatement(requete);
         ResultSet rset = pstmt.executeQuery(requete);
+      }
     }
         
         //créer un employe

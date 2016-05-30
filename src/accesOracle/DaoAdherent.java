@@ -11,7 +11,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import javax.swing.ImageIcon;
 import metier.Adherent;
+
 /**
  *
  * @author P1313115
@@ -19,7 +21,7 @@ import metier.Adherent;
 public class DaoAdherent {
 
     private final Connection cnx; // injection de dépendance
-
+    private ImageIcon photoAdherent;
     public DaoAdherent(Connection cnx) {
         this.cnx = cnx;
     }
@@ -64,42 +66,52 @@ public class DaoAdherent {
         return resultat;
     }
     
-    public String saPhoto(int numAdherent) throws SQLException {
-         String requete = "select photoadherent from ADHERENT where numeroadherent = " + numAdherent;
-        PreparedStatement pstmt = cnx.prepareStatement(requete);
-        ResultSet rset = pstmt.executeQuery(requete);
-        boolean resultat = rset.next();
-        pstmt.close();
-                while (rset.next()){
-            int num = Integer.parseInt(rset.getString(1));
-            String nomAdherent = rset.getString(2);
-            String prenomAdherent = rset.getString(3);
-            String adresseAdherent = rset.getString(4);
-            String cpAdherent = rset.getString(5);
-            String mdpAdherent = rset.getString(6);
-        }
-        return null;
-    }
+//    public ImageIcon saPhoto(int numAdherent) throws SQLException {
+//         String requete = "select nomadherent, photoadherent from ADHERENT where numeroadherent = " + numAdherent;
+//        PreparedStatement pstmt = cnx.prepareStatement(requete);
+//        ResultSet rset = pstmt.executeQuery(requete);
+//        
+//        while(rset.next()){
+//            String nom = rset.getString(1);
+//            String photo = rset.getString(2);
+//            
+//            
+//        }
+//        pstmt.close();
+//         rset.close();
+//        return photo.pitt.jpg;
+//    }
     
     
     //générer un identifiant unique 
     public void IdAdherentGenerator(int numAdh) throws SQLException {
+        String prerequete = "select nomadherent, prenomadherent from ADHERENT where numeroadherent = " + numAdh;
+        PreparedStatement pstmt1 = cnx.prepareStatement(prerequete);
+        ResultSet rset1 = pstmt1.executeQuery(prerequete);
+        pstmt1.close();
+                while (rset1.next()){
+            String nomAdherent = rset1.getString(1);
+            String prenomAdherent = rset1.getString(2);
+         
         String requete="";
         if(numAdh >=0 && numAdh <10){
              requete = "update ADHERENT "
-                + "Set identifiantAdherent='A16000"+numAdh+"'"
+                + "Set identifiantAdherent='"+prenomAdherent+"."+nomAdherent+"' "
                 + "where numeroadherent="+numAdh;
         } else if(numAdh >=10 && numAdh <100){
             requete = "update ADHERENT "
-                + "Set identifiantAdherent='A1600"+numAdh+"'"
+                + "Set identifiantAdherent='"+prenomAdherent+"."+nomAdherent+"' "
                 + "where numeroadherent="+numAdh;
         }else if(numAdh >=100 && numAdh <1000){
             requete = "update ADHERENT "
-                + "Set identifiantAdherent='A160"+numAdh+"'"
+                + "Set identifiantAdherent='"+prenomAdherent+"."+nomAdherent+"' "
                 + "where numeroadherent="+numAdh;
         }
         PreparedStatement pstmt = cnx.prepareStatement(requete);
         ResultSet rset = pstmt.executeQuery(requete);
+         rset.close();
+        }
+                 rset1.close();
     }
     
    //créer un adherent

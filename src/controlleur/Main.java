@@ -33,6 +33,7 @@ public class Main {
     //private static DaoEmploye daoEmp;
     private static DaoAdherent daoAdh;
     private static DaoEmploye daoEmp;
+    private static int numero;
 
     private enum TypeUtilisateur {
 
@@ -87,7 +88,7 @@ public class Main {
 
                     PasswordAuthentication blocId = fensaisie.recuperer();
                     try {
-                        int numero = Integer.parseInt(blocId.getUserName());
+                        numero = Integer.parseInt(blocId.getUserName());
                         String motDePasse = new String(blocId.getPassword());
 
                         // recuperation du type adhérent ou employé
@@ -126,7 +127,7 @@ public class Main {
                     try{
                        ModeleTableAdherent leModele = new ModeleTableAdherent(daoAdh);
                     FenetreAdherent laFenetreAdherent;
-                    laFenetreAdherent = new FenetreAdherent(leModele,daoAdh);
+                    laFenetreAdherent = new FenetreAdherent(leModele,daoAdh,numero);
                     laFenetreAdherent.setVisible(true);
                     }catch(Exception ex){
                          Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);

@@ -62,6 +62,8 @@ public class Adherent {
     public String getPhotoAdherent() {
         return photoAdherent;
     }
+    
+    
 
     public void setPhotoAdherent(String photoAdherent) {
         this.photoAdherent = photoAdherent;
