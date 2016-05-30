@@ -78,6 +78,30 @@ public class DaoEmploye {
         return poste;
     }
 
+    //générer un identifiant unique
+        public void IdEmployeGenerator(int numEmp) throws SQLException {
+        String requete="";
+        if(numEmp >=0 && numEmp <10){
+             requete = "update Employe "
+                + "Set identifiantEmployet='E16000"+numEmp+"'"
+                + "where numeroEmploye="+numEmp;
+        } else if(numEmp >=10 && numEmp <100){
+            requete = "update Employe "
+                + "Set identifiantEmploye='E1600"+numEmp+"'"
+                + "where numeroaEmploye="+numEmp;
+        }else if(numEmp >=100 && numEmp <1000){
+            requete = "update Employe "
+                + "Set identifiantEmploye='E160"+numEmp+"'"
+                + "where numeroEmploye="+numEmp;
+        }
+        PreparedStatement pstmt = cnx.prepareStatement(requete);
+        ResultSet rset = pstmt.executeQuery(requete);
+    }
+        
+        //créer un employe
+        //supprimer un employe
+        //modifier un employe
+   
 }
 
 
