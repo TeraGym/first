@@ -31,11 +31,7 @@ public class FenetreCoach extends javax.swing.JFrame {
         this.leModele = leModele; 
         initComponents();
         
-                try {
-            leModele.charger();
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Chargement impossible", "alerte", JOptionPane.ERROR_MESSAGE);
-        }
+        
     }
 
     /**
@@ -48,32 +44,276 @@ public class FenetreCoach extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jTabbedPane = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
+        btOKOnglet1 = new javax.swing.JButton();
+        lbTitre1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        laTable = new javax.swing.JTable();
+        JlAdhNom = new javax.swing.JLabel();
+        JlAdhPrenom = new javax.swing.JLabel();
+        JlAdhAdresse = new javax.swing.JLabel();
+        JlAdhCp = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        btOKOnglet31 = new javax.swing.JButton();
+        lbTitre31 = new javax.swing.JLabel();
+        lbTitre32 = new javax.swing.JLabel();
+        btOKOnglet32 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Coach");
+        jTabbedPane.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 153)), "Fenetre Coach", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Agency FB", 2, 12))); // NOI18N
+
+        btOKOnglet1.setText("OK");
+        btOKOnglet1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btOKOnglet1ActionPerformed(evt);
+            }
+        });
+
+        lbTitre1.setText("Activer les autres onglets");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addComponent(lbTitre1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btOKOnglet1)
+                .addContainerGap(392, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(59, 59, 59)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbTitre1)
+                    .addComponent(btOKOnglet1))
+                .addContainerGap(210, Short.MAX_VALUE))
+        );
+
+        jTabbedPane.addTab("Planning", jPanel1);
+
+        jPanel2.setEnabled(false);
+
+        laTable.setModel(leModele);
+        laTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                laTableMouseClicked(evt);
+            }
+        });
+        laTable.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                laTableKeyPressed(evt);
+            }
+        });
+        jScrollPane1.setViewportView(laTable);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(78, 78, 78)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(JlAdhCp, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
+                    .addComponent(JlAdhAdresse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(JlAdhPrenom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(JlAdhNom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(243, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(JlAdhNom, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(JlAdhPrenom, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(JlAdhAdresse, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(JlAdhCp, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(28, Short.MAX_VALUE))
+        );
+
+        jTabbedPane.addTab("Profil adherent", jPanel2);
+
+        jPanel3.setEnabled(false);
+
+        btOKOnglet31.setText("OK");
+        btOKOnglet31.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btOKOnglet31ActionPerformed(evt);
+            }
+        });
+
+        lbTitre31.setText("Voici vos informations personnelles :");
+
+        lbTitre32.setText("Ajouter l'onglet deux");
+
+        btOKOnglet32.setText("OK");
+        btOKOnglet32.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btOKOnglet32ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(lbTitre31, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(328, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(lbTitre32, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btOKOnglet32)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btOKOnglet31)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(187, 187, 187))))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbTitre31)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btOKOnglet31)
+                    .addComponent(btOKOnglet32)
+                    .addComponent(lbTitre32))
+                .addContainerGap())
+        );
+
+        jTabbedPane.addTab("Profil perso", jPanel3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(161, 161, 161)
-                .addComponent(jLabel1)
-                .addContainerGap(204, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(132, 132, 132)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(121, 121, 121)
-                .addComponent(jLabel1)
-                .addContainerGap(163, Short.MAX_VALUE))
+                .addGap(16, 16, 16)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btOKOnglet1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOKOnglet1ActionPerformed
+        int nbTab = jTabbedPane.getTabCount();
+        for (int i = 1; i < nbTab; i++) {
+            jTabbedPane.setEnabledAt(i, true);
+        }
+    }//GEN-LAST:event_btOKOnglet1ActionPerformed
+
+    private void laTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_laTableMouseClicked
+
+    
+            int numeroLigne = Integer.parseInt(laTable.getValueAt(laTable.getSelectedRow(), 0).toString());
+            if (numeroLigne != -1) {
+                JlAdhNom.setText(leModele.getValueAt(numeroLigne, 1).toString());
+                JlAdhPrenom.setText(leModele.getValueAt(numeroLigne, 2).toString());
+                JlAdhAdresse.setText(leModele.getValueAt(numeroLigne, 3).toString());
+                JlAdhCp.setText(leModele.getValueAt(numeroLigne, 4).toString());
+            }
+
+    }//GEN-LAST:event_laTableMouseClicked
+
+    private void laTableKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_laTableKeyPressed
+
+            int numeroLigne=Integer.parseInt(laTable.getValueAt(laTable.getSelectedRow(), 0).toString());
+            //            if(evt.getKeyCode() == evt.VK_UP && numeroLigne < laTable.getRowCount()){
+                //                numeroLigne = Integer.parseInt(laTable.getValueAt(laTable.getSelectedRow()-1, 0).toString());
+                //               }
+            if(evt.getKeyCode() == evt.VK_DOWN && numeroLigne ==0){
+                numeroLigne = Integer.parseInt(laTable.getValueAt(laTable.getSelectedRow()+1, 0).toString());
+            }
+
+            if (numeroLigne != -1) {
+                 JlAdhNom.setText(leModele.getValueAt(numeroLigne, 1).toString());
+                JlAdhPrenom.setText(leModele.getValueAt(numeroLigne, 2).toString());
+                JlAdhAdresse.setText(leModele.getValueAt(numeroLigne, 3).toString());
+                JlAdhCp.setText(leModele.getValueAt(numeroLigne, 4).toString());
+            }
+
+    }//GEN-LAST:event_laTableKeyPressed
+
+    private void btOKOnglet31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOKOnglet31ActionPerformed
+        jTabbedPane.remove(jPanel2);
+    }//GEN-LAST:event_btOKOnglet31ActionPerformed
+
+    private void btOKOnglet32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOKOnglet32ActionPerformed
+        jTabbedPane.insertTab("Deuxieme", null, jPanel2, null, 1);
+    }//GEN-LAST:event_btOKOnglet32ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel JlAdhAdresse;
+    private javax.swing.JLabel JlAdhCp;
+    private javax.swing.JLabel JlAdhNom;
+    private javax.swing.JLabel JlAdhPrenom;
+    private javax.swing.JButton btOKOnglet1;
+    private javax.swing.JButton btOKOnglet31;
+    private javax.swing.JButton btOKOnglet32;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTabbedPane jTabbedPane;
+    private javax.swing.JTable laTable;
+    private javax.swing.JLabel lbTitre1;
+    private javax.swing.JLabel lbTitre31;
+    private javax.swing.JLabel lbTitre32;
     // End of variables declaration//GEN-END:variables
 }

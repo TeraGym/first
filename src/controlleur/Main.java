@@ -17,6 +17,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import vue.FenetreAdherent;
 import vue.FenetreCoach;
 import vue.FenetreHote;
 import vue.FenetreIdentification;
@@ -122,6 +123,15 @@ public class Main {
 
                 if (leType == TypeUtilisateur.Adherent) {
                     System.out.println("Type Adhérent");
+                    try{
+                       ModeleTableAdherent leModele = new ModeleTableAdherent(daoAdh);
+                    FenetreAdherent laFenetreAdherent;
+                    laFenetreAdherent = new FenetreAdherent(leModele,daoAdh);
+                    laFenetreAdherent.setVisible(true);
+                    }catch(Exception ex){
+                         Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    
                     //test de commit
                 } else if(leType == TypeUtilisateur.Coach){
                     System.out.println("Type Coach");

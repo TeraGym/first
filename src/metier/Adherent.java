@@ -5,6 +5,8 @@
  */
 package metier;
 
+import java.sql.Date;
+
 /**
  *
  * @author Administrateur
@@ -17,19 +19,78 @@ public class Adherent {
     private String adresseAdherent;
     private String cpAdherent;
     private String mdpAdherent;
-    
+    private String telAdherent ;
+    private String mailAdherent;
+    private String photoAdherent;
+    private Date dateInscriptionAdherent;
+    private String IdAdherent;
+    private int numAbonnement;
 
-    public Adherent(int numAdherent, String nomAdherent, String prenomAdherent, String adresseAdherent, String cpAdherent, String mdpAdherent) {
+    public Adherent(int numAdherent, String nomAdherent, String prenomAdherent, String adresseAdherent, String cpAdherent, String mdpAdherent,
+           String telAdherent, String mailAdherent, String photoAdherent, Date dateInscriptionAdherent, String IdAdherent,int numAbonnement) {
         this.numAdherent = numAdherent;
         this.nomAdherent = nomAdherent;
         this.prenomAdherent = prenomAdherent;
         this.adresseAdherent = adresseAdherent;
         this.cpAdherent = cpAdherent;
         this.mdpAdherent = mdpAdherent;
+        this.telAdherent=telAdherent ;
+        this.mailAdherent=mailAdherent;
+        this.photoAdherent=photoAdherent;
+        this.dateInscriptionAdherent=dateInscriptionAdherent;
+        this.IdAdherent=IdAdherent;
+        this.numAbonnement=numAbonnement;
+        
     }
 
-    public Adherent() {
+    public String getTelAdherent() {
+        return telAdherent;
     }
+
+    public void setTelAdherent(String telAdherent) {
+        this.telAdherent = telAdherent;
+    }
+
+    public String getMailAdherent() {
+        return mailAdherent;
+    }
+
+    public void setMailAdherent(String mailAdherent) {
+        this.mailAdherent = mailAdherent;
+    }
+
+    public String getPhotoAdherent() {
+        return photoAdherent;
+    }
+
+    public void setPhotoAdherent(String photoAdherent) {
+        this.photoAdherent = photoAdherent;
+    }
+
+    public Date getDateInscriptionAdherent() {
+        return dateInscriptionAdherent;
+    }
+
+    public void setDateInscriptionAdherent(Date dateInscriptionAdherent) {
+        this.dateInscriptionAdherent = dateInscriptionAdherent;
+    }
+
+    public String getIdAdherent() {
+        return IdAdherent;
+    }
+
+    public void setIdAdherent(String IdAdherent) {
+        this.IdAdherent = IdAdherent;
+    }
+
+    public int getNumAbonnement() {
+        return numAbonnement;
+    }
+
+    public void setNumAbonnement(int numAbonnement) {
+        this.numAbonnement = numAbonnement;
+    }
+
 
     public int getNumAdherent() {
         return numAdherent;

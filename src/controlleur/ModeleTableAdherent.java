@@ -22,7 +22,8 @@ import metier.Adherent;
 public class ModeleTableAdherent extends AbstractTableModel {
 
     private List<Adherent> leConteneur;
-    private String[] nomColonnes = {"Numéro", "Nom", "Prenom", "Adresse","cp","MDP"};
+    private String[] nomColonnes = {"Numéro", "Nom", "Prenom", "Adresse","cp","MDP", "Telephone", "Mail",
+        "Photo","Date Inscription","Id","numero Abonnement"};
     private DaoAdherent leDao;
     //private DaoEmploye leDaoEmp;
 
@@ -58,11 +59,22 @@ public class ModeleTableAdherent extends AbstractTableModel {
                 return adh.getPrenomAdherent();
             case 3:
                 return adh.getAdresseAdherent();
-                
             case 4:
                 return adh.getCpAdherent();
             case 5:
                 return adh.getMdpAdherent();
+            case 6:
+                return adh.getTelAdherent();
+            case 7:
+                return adh.getMailAdherent();
+            case 8:
+                return adh.getPhotoAdherent();
+            case 9:
+                return adh.getDateInscriptionAdherent();
+            case 10:
+                return adh.getIdAdherent();
+            case 11:
+                return adh.getNumAbonnement();    
                         
         }
         return null;
@@ -73,7 +85,7 @@ public class ModeleTableAdherent extends AbstractTableModel {
         return nomColonnes[col];
     }
 
-    private void charger() throws SQLException {
+    public void charger() throws SQLException {
         leDao.lireAdherent(leConteneur);
         //leDaoEmp.lireEmploye(leConteneur);
         
