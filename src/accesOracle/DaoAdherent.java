@@ -6,6 +6,7 @@
 package accesOracle;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -34,10 +35,17 @@ public class DaoAdherent {
             String adresseAdherent = rset.getString(4);
             String cpAdherent = rset.getString(5);
             String mdpAdherent = rset.getString(6);
+            String telAdherent = rset.getString(7);
+            String mailAdherent = rset.getString(8);
+            String photoAdherent = rset.getString(9);
+            Date dateInscriptionAdherent = rset.getDate(10);
+            String IdAdherent = rset.getString(11);
+            int numAbonnement = Integer.parseInt(rset.getString(12));
             
             
             
-            Adherent temp = new Adherent(numAdherent,nomAdherent,prenomAdherent,adresseAdherent,cpAdherent,mdpAdherent);
+            Adherent temp = new Adherent(numAdherent,nomAdherent,prenomAdherent,adresseAdherent,cpAdherent,mdpAdherent,telAdherent,
+            mailAdherent,photoAdherent,dateInscriptionAdherent,IdAdherent,numAbonnement);
             
             LesAdherents.add(temp);
             
@@ -55,6 +63,49 @@ public class DaoAdherent {
         pstmt.close();
         return resultat;
     }
+    
+    public String saPhoto(int numAdherent) throws SQLException {
+         String requete = "select photoadherent from ADHERENT where numeroadherent = " + numAdherent;
+        PreparedStatement pstmt = cnx.prepareStatement(requete);
+        ResultSet rset = pstmt.executeQuery(requete);
+        boolean resultat = rset.next();
+        pstmt.close();
+                while (rset.next()){
+            int num = Integer.parseInt(rset.getString(1));
+            String nomAdherent = rset.getString(2);
+            String prenomAdherent = rset.getString(3);
+            String adresseAdherent = rset.getString(4);
+            String cpAdherent = rset.getString(5);
+            String mdpAdherent = rset.getString(6);
+        }
+        return null;
+    }
+    
+    
+    //générer un identifiant unique 
+    public void IdAdherentGenerator(int numAdh) throws SQLException {
+        String requete="";
+        if(numAdh >=0 && numAdh <10){
+             requete = "update ADHERENT "
+                + "Set identifiantAdherent='A16000"+numAdh+"'"
+                + "where numeroadherent="+numAdh;
+        } else if(numAdh >=10 && numAdh <100){
+            requete = "update ADHERENT "
+                + "Set identifiantAdherent='A1600"+numAdh+"'"
+                + "where numeroadherent="+numAdh;
+        }else if(numAdh >=100 && numAdh <1000){
+            requete = "update ADHERENT "
+                + "Set identifiantAdherent='A160"+numAdh+"'"
+                + "where numeroadherent="+numAdh;
+        }
+        PreparedStatement pstmt = cnx.prepareStatement(requete);
+        ResultSet rset = pstmt.executeQuery(requete);
+    }
+    
+   //créer un adherent
+   //supprimer un adherent
+   //modifier un adherent
+   
 }
 
 
